@@ -44,13 +44,13 @@
 * EXPOSE {numero da porta} :dize qual porta o container utiliza
 * Exemplo da estrutura básica do arquivo:
 
-FROM {imagem de referencia}:latest
-MAINTAINER {nome da pessoa que a esta mantendo}
-COPY {caminho origem} {caminho de destino}
-WORKDIR {pasta onde se baseia}
-RUN {comando}
-ENTRYPOINT {comando}
-EXPOSE {numero da porta}
+FROM {imagem de referencia}:latest  
+MAINTAINER {nome da pessoa que a esta mantendo}  
+COPY {caminho origem} {caminho de destino}  
+WORKDIR {pasta onde se baseia}  
+RUN {comando}  
+ENTRYPOINT {comando}  
+EXPOSE {numero da porta}  
 
 ## Executa então o comando docker build -f Caminho/Dockerfile -t {usuarioquecriou/nomedaimagem} .
 
@@ -74,67 +74,67 @@ EXPOSE {numero da porta}
 
 ## Exemplo de Arquivo de configuração
 
-version: '3'
-services:
-  nginx:
-    build:
-      dockerfile: ./docker/nginx.dockerfile
-      context: .
-    image: cristianwelter/nginx
-    container_name: nginx
-    ports:
-      - "80:80"
-    networks: 
-      - production-network
-    depends_on:
-      - "node1"
-      - "node2"
-      - "node3"
-  mongodb:
-    image: mongo
-    networks: 
-      - production-network
+version: '3'  
+services:  
+  nginx:  
+    build:  
+      dockerfile: ./docker/nginx.dockerfile  
+      context: .  
+    image: cristianwelter/nginx  
+    container_name: nginx  
+    ports:  
+      - "80:80"  
+    networks:   
+      - production-network  
+    depends_on:  
+      - "node1"  
+      - "node2"  
+      - "node3"  
+  mongodb:  
+    image: mongo  
+    networks:   
+      - production-network  
 
-  node1:
-    build:
-      dockerfile: ./docker/alura-books.dockerfile
-      context: .
-    image: cristianwelter/alura-books
-    container_name: alura-books-1
-    ports:
-      - "3000"
-    networks: 
-      - production-network
-    depends_on:
-      - "mongodb"
+  node1:  
+    build:  
+      dockerfile: ./docker/alura-books.dockerfile  
+      context: .  
+    image: cristianwelter/alura-books  
+    container_name: alura-books-1  
+    ports:  
+      - "3000"  
+    networks:   
+      - production-network  
+    depends_on:  
+      - "mongodb"  
 
-  node2:
-    build:
-      dockerfile: ./docker/alura-books.dockerfile
-      context: .
-    image: cristianwelter/alura-books
-    container_name: alura-books-2
-    ports:
-      - "3000"
-    networks: 
-      - production-network
-    depends_on:
-      - "mongodb"
+  node2:  
+    build:  
+      dockerfile: ./docker/alura-books.dockerfile  
+      context: .  
+    image: cristianwelter/alura-books  
+    container_name: alura-books-2  
+    ports:  
+      - "3000"  
+    networks:   
+      - production-network   
+    depends_on:  
+      - "mongodb"  
 
-  node3:
-    build:
-      dockerfile: ./docker/alura-books.dockerfile
-      context: .
-    image: cristianwelter/alura-books
-    container_name: alura-books-3
-    ports:
-      - "3000"
-    networks: 
-      - production-network
-    depends_on:
-      - "mongodb"
-networks: 
-  production-network:
-    driver: bridge
+  node3:  
+    build:  
+      dockerfile: ./docker/alura-books.dockerfile  
+      context: .  
+    image: cristianwelter/alura-books  
+    container_name: alura-books-3  
+    ports:  
+      - "3000"  
+    networks:   
+      - production-network  
+    depends_on:  
+      - "mongodb"  
+networks:     
+  production-network:  
+    driver: bridge  
 
-* docker-compse up :executar o yml com todas as configurações inseridas
+* docker-compse up :executar o yml com todas as configurações inseridas  
